@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+body {
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+.ql-editor {
+  font-size: 1.05rem;
+}
+
+.post-content p {
+  margin-bottom: 0.5rem;
+}
+
+.post-content h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  margin: 1.5rem 0;
+}
+
+.post-content h2 {
+  font-size: 1.4rem;
+  font-family: sans-serif;
+  margin: 1.5rem 0;
+}
+
+.post-content a {
+  color: rgb(73, 149, 199);
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+.dark .post-content a {
+  color: red;
+}
+
+
+
+/* Target the scrollbar */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar handle */
+  border-radius: 12px; /* Rounded corners of the handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #11b2ac; /* Color of the scrollbar handle on hover */
+}
+
+
+
+
+.glow-button {
+  
+  box-shadow: 0 0 0px #5f0b0c;
+  outline: none;
+  animation: glow 1.5s infinite;
+}
+
+@keyframes glow {
+  0% {
+      box-shadow: 0 0 1px #870407, 0 0 20px #870407, 0 0 3px #ff0004, 0 0 2px #ff0004;
+  }
+  50% {
+      box-shadow: 0 0 2px #870407, 0 0 2px #870407, 0 0 3px #ff0004, 0 0 3px #ff0004;
+  }
+  100% {
+      box-shadow: 0 0 2px #870407, 0 0 2px #870407, 0 0 5px #ff0004, 0 0 3px #ff0004;
+  }
+}
+
+/* .focus:ring-cyan-300:focus {
+  --tw-ring-opacity: 0 !important;
+} */
+
+.sidebar-item-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.no-focus-ring:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+* {
+  --tw-ring-color: transparent !important;
+  --tw-ring-outline-offset: 5px !important;
+  --tw-ring-offset-width: 0px !important;
+  /* border-color: transparent !important; */
+}
+
