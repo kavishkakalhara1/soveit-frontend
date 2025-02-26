@@ -177,6 +177,8 @@ export default function SignIn() {
               )}
             </Button>
           </form>
+          <div className="mt-2 text-sm">Don't You have an Account? &nbsp;</div>
+          <Link to="/sign-up" className="mt-1 text-sm text-teal-700 hover:font-medium">Create Account</Link>
 
           {errorMessage && (
             <Alert className="mt-5" color="failure">
