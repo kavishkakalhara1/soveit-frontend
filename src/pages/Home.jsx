@@ -8,14 +8,19 @@ import {
 } from "flowbite-react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 function Home() {
   const dispatch = useDispatch();
   const {currentUser} = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [showAddIssueModal, setShowAddIssueModal] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    app: "",
+    severity: "low",
+    type: "issue",
+    description: "",
+  });
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleOpenAddIssueModal = () => {
@@ -29,6 +34,8 @@ function Home() {
       [id]: value,
     }));
   };
+
+  console.log(formData);
 
   const handleReportIssue = async (e) => {
     const reportedBy = currentUser._id;
@@ -53,7 +60,7 @@ function Home() {
       ...formData,
       reportedBy: currentUser._id, // Add this explicitly
     };
-      const res = await fetch("/api/issue/add-issue", {
+      const res = await fetch("/api/issues/add-issue", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestData),
@@ -67,7 +74,39 @@ function Home() {
       }
       setLoading(false);
       if (res.ok) {
-        navigate("/dashboard?tab=machines");
+        toast(
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            {/* {image && (
+              <img
+                src={image}
+                alt="Notification"
+                style={{ width: "40px", height: "30px", borderRadius: "5px" }}
+              />
+            )} */}
+            <div>
+              <strong style={{ fontSize: "14px", display: "block" }}>
+                Issue Reported Successfully
+              </strong>
+             
+            </div>
+          </div>,
+          {
+            style: {
+              borderRadius: "10px",
+              background: "red",
+              color: "#fff",
+              padding: "10px",
+              minWidth: "250px",
+            },
+          }
+        );
+        setShowAddIssueModal(false);
+        setFormData({
+          app: "",
+          severity: "low",
+          type: "issue",
+          description: "",
+        });
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -76,6 +115,7 @@ function Home() {
   };
   return (
     <div className="flex items-center justify-center min-h-screen">
+      <Toaster position="top-right"/>
       <section className="relative flex items-center justify-center w-full h-screen px-6 text-center text-white bg-gradient-to-r from-primary to-indigo-800">
         <div className="max-w-4xl">
           <h1 className="text-5xl font-extrabold leading-tight sm:text-6xl">
